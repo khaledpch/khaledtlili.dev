@@ -1,3 +1,4 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-export default defineConfig({site:'https://khaledtlili.dev',integrations:[mdx()],markdown:{shikiConfig:{theme:'github-dark'}}});
+import sitemap from '@astrojs/sitemap';
+export default defineConfig({site:'https://khaledtlili.dev',integrations:[mdx(),sitemap()],markdown:{shikiConfig:{theme:'github-dark'}}});
