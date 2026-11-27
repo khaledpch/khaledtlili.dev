@@ -9,6 +9,12 @@
   },
   "dependencies": {
     "astro": "^5.0.0",
-    "@astrojs/mdx": "^4.0.0"
+    "@astrojs/mdx": "^4.0.0",
+    "@astrojs/sitemap": "^3.2.0",
+    "@astrojs/rss": "^4.0.0",
+    "mermaid": "^11.4.0",
+    "fuse.js": "^7.0.0",
+    "pdf-lib": "^1.17.1",
+    "simple-icons": "^14.0.0"
   }
 }
