@@ -1,0 +1,36 @@
+---
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="robots" content="noindex, nofollow, noarchive"/>
+<meta name="referrer" content="no-referrer"/>
+<title>A little challenge</title>
+<meta name="description" content="How well do you know me?"/>
+<style>
+:root{color-scheme:dark;font-family:system-ui,sans-serif;background:#191416;color:#fff4f5;line-height:1.6}*{box-sizing:border-box}body{margin:0;min-height:100svh;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 5%,#43252e,#191416 65%)}main{width:min(100%,520px);padding:clamp(22px,5vw,42px);border:1px solid #60434c;border-radius:24px;background:#21191d;box-shadow:0 20px 80px #0005;text-align:center}h1{font-size:clamp(30px,6vw,44px);line-height:1.15;letter-spacing:-.04em}p{color:#d9c1c7}.eyebrow{font:12px monospace;letter-spacing:.16em;text-transform:uppercase;color:#e8a4b3}.heart{font-size:48px;color:#e8a4b3}button{font:inherit;color:inherit;cursor:pointer;background:#32242a;border:1px solid #64434e;border-radius:12px;padding:14px 18px;width:100%;margin-top:10px;text-align:left}button:hover{background:#493039;border-color:#e8a4b3}button:focus-visible{outline:3px solid #ffc3d0;outline-offset:3px}.primary{background:#a6334b;text-align:center;border-color:#a6334b;font-weight:650}progress{width:100%;height:7px;accent-color:#e8a4b3}#screen{animation:appear .35s ease-out}@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}.prize{width:180px;max-width:100%;margin:12px auto;display:block}.confetti{position:fixed;top:-20px;width:9px;height:14px;pointer-events:none;animation:fall 3s linear forwards}@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:0}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important}}
+</style></head>
+<body><main><div id="screen" aria-live="polite"><div class="heart" aria-hidden="true">♡</div><p class="eyebrow">A little challenge</p><h1>How well do you know me?</h1><p>Some questions are easy. Some require a little more attention.</p><p>Ten questions. Something special awaits if you get them all right.</p><button id="start" class="primary">Accept the challenge ♡</button></div><noscript>Please enable JavaScript to play.</noscript></main>
+<script>
+const questions=[
+{q:'Which football team do I support?',options:['Arsenal','Chelsea','Real Madrid','Barcelona'],answer:1},
+{q:'What is my favorite band?',options:['Coldplay','Imagine Dragons','Cigarettes After Sex','Arctic Monkeys'],answer:2},
+{q:'Which region of Tunisia am I from?',options:['Sousse','Bizerte','Sfax','Kasserine'],answer:3},
+{q:'When did I start my professional software development career?',options:['2017','2018','2019','2020'],answer:0},
+{q:'In which year did I move to Germany for work?',options:['2021','2023','2024','2022'],answer:1},
+{q:'Which city am I based in for work?',options:['Berlin','Munich','Frankfurt','Hamburg'],answer:2},
+{q:'Which company do I currently work for?',options:['CHECK24','SAP','Siemens','Zalando'],answer:0},
+{q:'Which of these sports do I play regularly?',options:['Golf','Squash','Ice hockey','Padel'],answer:3},
+{q:'Which concert did I attend in Frankfurt this November?',options:['Coldplay','The Weeknd','Adele','Ed Sheeran'],answer:1},
+{q:'Which country did I visit in August 2026?',options:['Spain','Greece','Turkey','Italy'],answer:2}
+];
+const screen=document.querySelector<HTMLElement>('#screen')!;
+let step=0,score=0,order=questions.slice();
+function shuffle<T>(values:T[]):T[]{const copy=values.slice();for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
+function start(){step=0;score=0;order=shuffle(questions);show();}
+function show(){const item=order[step];screen.innerHTML='';const meta=document.createElement('p');meta.className='eyebrow';meta.textContent='Question '+(step+1)+' of '+order.length;const bar=document.createElement('progress');bar.max=order.length;bar.value=step;bar.setAttribute('aria-label','Quiz progress');const h=document.createElement('h1');h.textContent=item.q;h.tabIndex=-1;screen.append(meta,bar,h);for(const option of shuffle(item.options.map((label,index)=>({label,index})))){const b=document.createElement('button');b.textContent=option.label;b.addEventListener('click',()=>{if(option.index===item.answer)score++;step++;if(step===order.length)finish();else show();});screen.append(b);}h.focus();}
+function finish(){if(score===order.length){screen.innerHTML='<div class="heart" aria-hidden="true">♡</div><p class="eyebrow">Perfect score · 10/10</p><h1>You know me pretty well.</h1><svg class="prize" viewBox="0 0 200 200" role="img" aria-label="Red cardigan"><path d="M65 18 L39 30 8 111 35 123 53 80 53 181 147 181 147 80 165 123 192 111 161 30 135 18 100 66Z" fill="#b72d40" stroke="#ea8b9b" stroke-width="2"/><path d="M65 18 L100 66 135 18 M100 66V181 M53 169H147" fill="none" stroke="#f49aab" stroke-width="3"/><g fill="#f4d7d3"><circle cx="100" cy="89" r="4"/><circle cx="100" cy="111" r="4"/><circle cx="100" cy="133" r="4"/><circle cx="100" cy="155" r="4"/></g></svg><h2>You won a red cardigan!</h2><p>This little surprise was made especially for you.</p><p>With love, always. ❤️</p>';if(!matchMedia('(prefers-reduced-motion: reduce)').matches){for(let i=0;i<48;i++){const c=document.createElement('i');c.className='confetti';c.style.left=Math.random()*100+'vw';c.style.background=['#a6334b','#f4a9b7','#ffe8cd'][i%3];c.style.animationDelay=Math.random()*.8+'s';document.body.append(c);c.addEventListener('animationend',()=>c.remove(),{once:true});}}}else{screen.innerHTML='<div class="heart" aria-hidden="true">♡</div><p class="eyebrow">Your result</p><h1>'+score+'/10</h1><p>Almost, but not quite! Your surprise is still locked.</p><button class="primary" id="retry">Try again ♡</button>';document.querySelector('#retry')?.addEventListener('click',start);}const heading=screen.querySelector('h1');if(heading){heading.tabIndex=-1;heading.focus();}}
+document.querySelector('#start')?.addEventListener('click',start);
+</script></body></html>
