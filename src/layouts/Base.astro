@@ -1,0 +1,5 @@
+---
+import '../styles/global.css';
+const {title='Khaled Tlili',description='Software engineering, architecture and continuous learning.'}=Astro.props;
+---
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="description" content={description}/><title>{title}</title><script is:inline>try{document.documentElement.dataset.theme=localStorage.getItem('theme')||'dark'}catch{}</script></head><body><header><nav><a class="brand" href="/">kt<span>.</span></a><div class="navlinks"><a href="/">Home</a><a href="/blog/">Writing</a><a href="/projects/">Projects</a><a href="/about/">About</a><button id="theme" aria-label="Toggle color theme">☼</button></div></nav></header><main><slot/></main><footer>© {new Date().getFullYear()} Khaled Tlili <a href="https://www.linkedin.com/in/khaled-tlili-85b887106/">LinkedIn ↗</a></footer><script>document.querySelector('#theme')?.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='light'?'dark':'light';document.documentElement.dataset.theme=next;try{localStorage.setItem('theme',next)}catch{}});</script></body></html>

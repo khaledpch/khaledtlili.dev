@@ -1,0 +1,25 @@
+---
+title: Closures, callbacks and deferred execution
+description: Passing behavior instead of a value.
+category: Backend
+tags: [PHP, Patterns]
+date: 2026-11-26
+---
+## Functions as values
+
+A callback is a function passed to another piece of code to invoke when needed. A closure is a function object that can capture surrounding variables.
+
+## First-class callables
+
+```php
+function double(int $n): int {
+    return $n * 2;
+}
+
+$callback = double(...);
+$result = array_map($callback, [1, 2, 3]);
+```
+
+## Takeaways
+
+Passing a callable is different from executing a function immediately.

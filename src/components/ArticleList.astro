@@ -1,0 +1,4 @@
+---
+const {articles}=Astro.props;
+---
+{articles.map((a:any)=><a class="row article" data-category={a.data.category} data-search={[a.data.title,a.data.description,...a.data.tags].join(' ').toLowerCase()} href={'/blog/'+a.id+'/'}><div class="eyebrow">{a.data.category} · {Math.max(1,Math.ceil((a.body??'').split(/\s+/).length/220))} min read</div><h3>{a.data.title} ↗</h3><p>{a.data.description}</p><div class="tags">{a.data.tags.map((t:string)=><span class="tag">{t}</span>)}</div></a>)}

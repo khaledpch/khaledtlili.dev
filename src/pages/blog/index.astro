@@ -1,0 +1,8 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArticleList from '../../components/ArticleList.astro';
+import {getCollection} from 'astro:content';
+const articles=(await getCollection('articles')).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
+const categories=['All',...new Set(articles.map(a=>a.data.category))];
+---
+<Base title="Writing — Khaled Tlili"><div class="eyebrow">01 / Engineering journal</div><h1>Writing<span class="accent">.</span></h1><p>Notes on architecture, programming and building better software. Sample articles for review.</p><input id="search" type="search" aria-label="Search articles or tags" placeholder="Search articles or tags…"/><div class="tags">{categories.map(c=><button class="tag" data-filter={c} aria-pressed={c==='All'}>{c}</button>)}</div><ArticleList articles={articles}/><p id="empty" hidden>No matching articles.</p></Base><script>let category='All';const input=document.querySelector<HTMLInputElement>('#search');const rows=[...document.querySelectorAll<HTMLElement>('.article')];function filter(){const q=input?.value.toLowerCase()??'';for(const r of rows)r.hidden=!(category==='All'||r.dataset.category===category)||!(r.dataset.search??'').includes(q);const empty=document.querySelector<HTMLElement>('#empty');if(empty)empty.hidden=rows.some(r=>!r.hidden);}input?.addEventListener('input',filter);document.querySelectorAll<HTMLButtonElement>('[data-filter]').forEach(b=>b.addEventListener('click',()=>{category=b.dataset.filter??'All';document.querySelectorAll('[data-filter]').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));filter()}));const tag=new URLSearchParams(location.search).get('tag');if(tag&&input){input.value=tag;filter();}</script>

@@ -1,0 +1,11 @@
+KHALED TLILI
+Senior Software Developer | Frankfurt, Germany
+Draft CV — review before publication
+
+CHECK24 — Senior Software Developer — Jun 2023–present
+Sofrecom Tunisie — Full Stack Web Developer — Jul 2020–May 2023
+Tunafanya — Full Stack Web Developer — Mar 2019–Jul 2020
+Tunisia International Technology — Full Stack Web Developer — Dec 2017–Mar 2019
+
+PHP, Symfony, TypeScript, React, MySQL, Redis, Docker, Jenkins, Grafana, DDD
+LinkedIn: https://www.linkedin.com/in/khaled-tlili-85b887106/

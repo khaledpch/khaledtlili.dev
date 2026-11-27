@@ -1,3 +1,3 @@
 # Khaled Tlili — engineering journal
 
-Personal Astro website. Run `pnpm install`, `pnpm dev`, or `pnpm build`. Deploy the `dist` directory to Cloudflare Pages. Sample articles and project concepts should be reviewed before publishing.
+Node 22+, pnpm. Run `pnpm install`, `pnpm dev`, `pnpm build`. Cloudflare Pages: main branch, `pnpm build`, output `dist`. Review sample articles, CV and project concepts before public launch.

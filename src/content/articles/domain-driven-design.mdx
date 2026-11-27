@@ -1,0 +1,32 @@
+---
+title: Domain-Driven Design beyond the theory
+description: Making business rules explicit in everyday code.
+category: Architecture
+tags: [DDD, PHP, Symfony]
+date: 2026-11-27
+---
+import Architecture from '../../components/Architecture.astro';
+
+## Start with business rules
+
+A folder structure is not a domain model. Begin with business language, invariants and boundaries.
+
+## An aggregate in practice
+
+An order controls which changes are allowed after confirmation. The application service coordinates the operation while the domain owns the rule.
+
+```php
+public function confirm(): void
+{
+    if ($this->items->isEmpty()) {
+        throw new DomainException('Order cannot be empty.');
+    }
+    $this->status = OrderStatus::Confirmed;
+}
+```
+
+<Architecture />
+
+## Takeaways
+
+Model invariants explicitly and keep dependencies intentional.
